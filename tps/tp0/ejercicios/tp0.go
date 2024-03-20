@@ -117,7 +117,6 @@ func invertirCadena(cadena []string, cadenaInvertida string) string {
 func EsCadenaCapicua(cadena string) bool {
 
 	caracteres := strings.Split(cadena, "")
-
 	cadenaInvertida := invertirCadena(caracteres, "")
 
 	return cadena == cadenaInvertida
