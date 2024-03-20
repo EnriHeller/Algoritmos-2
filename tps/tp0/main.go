@@ -50,27 +50,27 @@ func escribirArchivo(ruta string, arreglo []int) {
 	datawriter := bufio.NewWriter(archivo)
 
 	for _, numero := range arreglo {
-        _, err = datawriter.WriteString(fmt.Sprintf("%d", numero) + "\n")
-        if err != nil {
-            fmt.Printf("No se pudo guardar el número %d, error: %v", numero, err)
-        }
-    }
-    datawriter.Flush()
+		_, err = datawriter.WriteString(fmt.Sprintf("%d", numero) + "\n")
+		if err != nil {
+			fmt.Printf("No se pudo guardar el número %d, error: %v", numero, err)
+		}
+	}
+	datawriter.Flush()
 }
 
-func imprimirArchivo(ruta string){
+func imprimirArchivo(ruta string) {
 	archivo, err := os.Open(ruta)
-    printError(err)
+	printError(err)
 	defer archivo.Close()
 
-    s := bufio.NewScanner(archivo)
-    for s.Scan() {
-        fmt.Println(s.Text())
-    }
-    err = s.Err()
-    if err != nil {
-        fmt.Println(err)
-    }
+	s := bufio.NewScanner(archivo)
+	for s.Scan() {
+		fmt.Println(s.Text())
+	}
+	err = s.Err()
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func main() {

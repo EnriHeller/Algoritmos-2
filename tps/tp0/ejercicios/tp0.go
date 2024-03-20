@@ -34,12 +34,12 @@ func Maximo(vector []int) int {
 
 func compararInterno(vector1 []int, vector2 []int, lenMenor int) int {
 
-	for i := range(lenMenor){
-		if(vector1[i] > vector2[i]){
+	for i := range lenMenor {
+		if vector1[i] > vector2[i] {
 			return 1
 		}
 
-		if(vector2[i] > vector1[i]){
+		if vector2[i] > vector1[i] {
 			return -1
 		}
 	}
@@ -49,19 +49,19 @@ func compararInterno(vector1 []int, vector2 []int, lenMenor int) int {
 
 func Comparar(vector1 []int, vector2 []int) int {
 
-	if(len(vector1) < len(vector2)){
+	if len(vector1) < len(vector2) {
 		rParcial := compararInterno(vector1, vector2, len(vector1))
-		if rParcial == 0{
+		if rParcial == 0 {
 			return -1
 		}
-	}else if(len(vector2) < len(vector1)){
+	} else if len(vector2) < len(vector1) {
 		rParcial := compararInterno(vector1, vector2, len(vector2))
-		if rParcial == 0{
+		if rParcial == 0 {
 			return 1
 		}
 	}
 
-	return compararInterno(vector1,vector2, len(vector1))
+	return compararInterno(vector1, vector2, len(vector1))
 }
 
 // Seleccion ordena el arreglo recibido mediante el algoritmo de selección.
