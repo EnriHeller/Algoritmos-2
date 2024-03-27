@@ -83,15 +83,14 @@ func main() {
 	arreglo1 := obtenerArreglo(archivo1)
 	arreglo2 := obtenerArreglo(archivo2)
 
-	ejercicios.Seleccion(arreglo1)
-	ejercicios.Seleccion(arreglo2)
-
 	comparacion := ejercicios.Comparar(arreglo1, arreglo2)
 
 	if comparacion == 1 {
+		ejercicios.Seleccion(arreglo1)
 		escribirArchivo(ruta1, arreglo1)
 		imprimirArchivo(ruta1)
 	} else if comparacion == -1 {
+		ejercicios.Seleccion(arreglo2)
 		escribirArchivo(ruta2, arreglo2)
 		imprimirArchivo(ruta2)
 	}

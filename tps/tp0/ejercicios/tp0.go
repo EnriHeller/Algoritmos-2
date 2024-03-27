@@ -34,7 +34,7 @@ func Maximo(vector []int) int {
 
 func compararInterno(vector1 []int, vector2 []int, lenMenor int) int {
 
-	for i := range lenMenor {
+	for i := 0; i < lenMenor; i++ {
 		if vector1[i] > vector2[i] {
 			return 1
 		}
