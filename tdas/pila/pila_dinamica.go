@@ -21,6 +21,10 @@ func (pila *pilaDinamica[T]) EstaVacia() bool {
 
 func (pila *pilaDinamica[T]) VerTope() T {
 
+	if pila.EstaVacia() {
+		panic("La pila esta vacia")
+	}
+
 	iTope := pila.cantidad - 1
 	return pila.datos[iTope]
 }
@@ -40,7 +44,6 @@ func (pila *pilaDinamica[T]) checkRedimension() {
 	if pila.cantidad*4 <= cap(pila.datos) {
 		pila.redimensionar(cap(pila.datos) / 2)
 	}
-
 }
 
 func (pila *pilaDinamica[T]) Apilar(elem T) {
