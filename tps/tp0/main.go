@@ -8,11 +8,16 @@ import (
 	"tp0/ejercicios"
 )
 
+//printError imprime los errores generados, exceptuando los de valor "nil".
+
 func printError(err error) {
 	if err != nil {
 		fmt.Println(err)
 	}
 }
+
+//obtenerArchivo devuelve el archivo cuya ruta se indica por parámetro.
+//En caso de haber un error, se imprime la ruta del archivo y el código de error asociado.
 
 func obtenerArchivo(ruta string) *os.File {
 	archivo, err := os.Open(ruta)
@@ -24,6 +29,9 @@ func obtenerArchivo(ruta string) *os.File {
 
 	return archivo
 }
+
+//obtenerArreglo devuelve arreglo de números ubicados separadamente línea por línea
+//en el archivo pasado por parámetro.
 
 func obtenerArreglo(archivo *os.File) []int {
 	var arreglo []int
@@ -42,34 +50,11 @@ func obtenerArreglo(archivo *os.File) []int {
 	return arreglo
 }
 
-func escribirArchivo(ruta string, arreglo []int) {
-	archivo, err := os.Create(ruta)
-	printError(err)
-	defer archivo.Close()
+//imprimirArreglo imprime cada número alojado en el arreglo pasado por parámetro, por separado.
 
-	datawriter := bufio.NewWriter(archivo)
-
-	for _, numero := range arreglo {
-		_, err = datawriter.WriteString(fmt.Sprintf("%d", numero) + "\n")
-		if err != nil {
-			fmt.Printf("No se pudo guardar el número %d, error: %v", numero, err)
-		}
-	}
-	datawriter.Flush()
-}
-
-func imprimirArchivo(ruta string) {
-	archivo, err := os.Open(ruta)
-	printError(err)
-	defer archivo.Close()
-
-	s := bufio.NewScanner(archivo)
-	for s.Scan() {
-		fmt.Println(s.Text())
-	}
-	err = s.Err()
-	if err != nil {
-		fmt.Println(err)
+func imprimirArreglo(arreglo []int) {
+	for _, valor := range arreglo {
+		fmt.Println(valor)
 	}
 }
 
@@ -87,11 +72,9 @@ func main() {
 
 	if comparacion == 1 {
 		ejercicios.Seleccion(arreglo1)
-		escribirArchivo(ruta1, arreglo1)
-		imprimirArchivo(ruta1)
+		imprimirArreglo(arreglo1)
 	} else if comparacion == -1 {
 		ejercicios.Seleccion(arreglo2)
-		escribirArchivo(ruta2, arreglo2)
-		imprimirArchivo(ruta2)
+		imprimirArreglo(arreglo2)
 	}
 }

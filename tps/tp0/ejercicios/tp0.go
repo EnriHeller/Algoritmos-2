@@ -1,7 +1,5 @@
 package ejercicios
 
-import "strings"
-
 // Swap intercambia dos valores enteros.
 func Swap(x *int, y *int) {
 
@@ -32,9 +30,9 @@ func Maximo(vector []int) int {
 // Un arreglo es menor a otro cuando al compararlos elemento a elemento, el primer elemento en el que difieren
 // no existe o es menor.
 
-func compararInterno(vector1 []int, vector2 []int, lenMenor int) int {
+func Comparar(vector1 []int, vector2 []int) int {
 
-	for i := 0; i < lenMenor; i++ {
+	for i := 0; i < len(vector1) && i < len(vector2); i++ {
 		if vector1[i] > vector2[i] {
 			return 1
 		}
@@ -44,80 +42,54 @@ func compararInterno(vector1 []int, vector2 []int, lenMenor int) int {
 		}
 	}
 
-	return 0
-}
-
-func Comparar(vector1 []int, vector2 []int) int {
-
 	if len(vector1) < len(vector2) {
-		rParcial := compararInterno(vector1, vector2, len(vector1))
-		if rParcial == 0 {
-			return -1
-		}
-	} else if len(vector2) < len(vector1) {
-		rParcial := compararInterno(vector1, vector2, len(vector2))
-		if rParcial == 0 {
-			return 1
-		}
+		return -1
 	}
-
-	return compararInterno(vector1, vector2, len(vector1))
+	if len(vector2) < len(vector1) {
+		return 1
+	}
+	return 0
 }
 
 // Seleccion ordena el arreglo recibido mediante el algoritmo de selección.
 func Seleccion(vector []int) {
 
-	iUltimo := len(vector) - 1
-
-	for iUltimo > 0 {
-		iMax := Maximo(vector[:iUltimo+1])
-		Swap(&vector[iMax], &vector[iUltimo])
-		iUltimo = iUltimo - 1
+	for i := len(vector) - 1; i > 0; i-- {
+		iMax := Maximo(vector[:i+1])
+		Swap(&vector[iMax], &vector[i])
 	}
-
 }
 
 // Suma devuelve la suma de los elementos de un arreglo. En caso de no tener elementos, debe devolver 0.
 // Esta función debe implementarse de forma RECURSIVA. Se puede usar una función auxiliar (que sea
 // la recursiva).
 
-func SumarRestantes(vector []int, total int) int {
-
+func Suma(vector []int) int {
 	if len(vector) == 0 {
-		return total
+		return 0
 	}
 
 	n := len(vector) - 1
-	total += vector[n]
+	valorActual := vector[n]
 
-	return SumarRestantes(vector[:n], total)
-}
-
-func Suma(vector []int) int {
-	return SumarRestantes(vector, 0)
+	return valorActual + Suma(vector[:n])
 }
 
 // EsCadenaCapicua devuelve si la cadena es un palíndromo. Es decir, si se lee igual al derecho que al revés.
 // Esta función debe implementarse de forma RECURSIVA. Se puede usar una función auxiliar (que sea
 // la recursiva).
 
-func invertirCadena(cadena []string, cadenaInvertida string) string {
+func EsCadenaCapicua(cadena string) bool {
 
-	if len(cadena) == 0 {
-		return cadenaInvertida
+	if len(cadena) == 0 || len(cadena) == 1 {
+		return true
 	}
 
 	n := len(cadena) - 1
-	ultimoC := cadena[n]
-	cadenaInvertida += ultimoC
 
-	return invertirCadena(cadena[:n], cadenaInvertida)
-}
+	if cadena[0] != cadena[n] {
+		return false
+	}
 
-func EsCadenaCapicua(cadena string) bool {
-
-	caracteres := strings.Split(cadena, "")
-	cadenaInvertida := invertirCadena(caracteres, "")
-
-	return cadena == cadenaInvertida
+	return EsCadenaCapicua(cadena[1:n])
 }
