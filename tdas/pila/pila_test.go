@@ -26,7 +26,9 @@ func TestApilar(t *testing.T) {
 		pila.Apilar(elem2)
 		pila.Apilar(elem3)
 		require.Equal(t, elem3, pila.Desapilar())
+		require.Equal(t,elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
+		require.Equal(t,elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 	{
@@ -38,7 +40,9 @@ func TestApilar(t *testing.T) {
 		pila.Apilar(elem2)
 		pila.Apilar(elem3)
 		require.Equal(t, elem3, pila.Desapilar())
+		require.Equal(t,elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
+		require.Equal(t,elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 	{
@@ -47,25 +51,28 @@ func TestApilar(t *testing.T) {
 		elem2 := false
 		pila.Apilar(elem1)
 		pila.Apilar(elem2)
+		require.Equal(t,elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
+		require.Equal(t,elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 }
 func TestVolumen(t *testing.T) {
 	pila := TDAPila.CrearPilaDinamica[int]()
-	for i := range 10000 {
+	const volumen int = 10000
+
+	for i := 0; i <= volumen; i++ {
 		pila.Apilar(i)
 	}
-	tope := 9999
 
-	for range 1000 {
+	for tope := volumen; tope > 0; tope-- {
 		require.Equal(t, tope, pila.VerTope(),
 			fmt.Sprintf("Tope esperado: %d. Tope recibido %d", tope, pila.VerTope()))
 
 		desapilado := pila.Desapilar()
+
 		require.Equal(t, tope, desapilado,
 			fmt.Sprintf("Elemento desapilado esperado: %d. Elemento recibido %d", tope, desapilado))
-		tope--
 	}
 }
 func TestDesapilada(t *testing.T) {

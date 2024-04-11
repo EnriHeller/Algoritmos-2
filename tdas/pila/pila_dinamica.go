@@ -35,28 +35,22 @@ func (pila *pilaDinamica[T]) redimensionar(tam int) {
 	pila.datos = nuevoArreglo
 }
 
-func (pila *pilaDinamica[T]) checkRedimension() {
-
-	if pila.cantidad == cap(pila.datos) {
-		pila.redimensionar(cap(pila.datos) * 2)
-	}
-
-	if pila.cantidad*4 <= cap(pila.datos) {
-		pila.redimensionar(cap(pila.datos) / 2)
-	}
-}
-
 func (pila *pilaDinamica[T]) Apilar(elem T) {
 
 	pila.datos[pila.cantidad] = elem
 	pila.cantidad++
-	pila.checkRedimension()
+	
+	if pila.cantidad == cap(pila.datos) {
+		pila.redimensionar(cap(pila.datos) * 2)
+	}
 }
 
 func (pila *pilaDinamica[T]) Desapilar() T {
 
 	ultimoElemento := pila.VerTope()
 	pila.cantidad--
-	pila.checkRedimension()
+	if pila.cantidad*4 <= cap(pila.datos) {
+		pila.redimensionar(cap(pila.datos) / 2)
+	}
 	return ultimoElemento
 }
