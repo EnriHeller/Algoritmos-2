@@ -6,6 +6,8 @@ type pilaDinamica[T any] struct {
 }
 
 const capInicial int = 6
+const factorRedimension int = 2
+
 
 func CrearPilaDinamica[T any]() Pila[T] {
 
@@ -41,7 +43,7 @@ func (pila *pilaDinamica[T]) Apilar(elem T) {
 	pila.cantidad++
 
 	if pila.cantidad == cap(pila.datos) {
-		pila.redimensionar(cap(pila.datos) * 2)
+		pila.redimensionar(cap(pila.datos) * factorRedimension)
 	}
 }
 
@@ -49,8 +51,8 @@ func (pila *pilaDinamica[T]) Desapilar() T {
 
 	ultimoElemento := pila.VerTope()
 	pila.cantidad--
-	if pila.cantidad*4 <= cap(pila.datos) {
-		pila.redimensionar(cap(pila.datos) / 2)
+	if pila.cantidad*factorRedimension*2 <= cap(pila.datos) {
+		pila.redimensionar(cap(pila.datos) / factorRedimension)
 	}
 	return ultimoElemento
 }

@@ -53,19 +53,20 @@ func TestEncolar(t *testing.T) {
 }
 func TestVolumen(t *testing.T) {
 	cola := TDACola.CrearColaEnlazada[int]()
-	for i := range 10000 {
+	const volumen int = 10000
+
+
+	for i := 0; i <= volumen; i++ {
 		cola.Encolar(i)
 	}
-	primero := 0
 
-	for range 10000 {
+	for primero := 0; primero > volumen; primero++ {
 		require.Equal(t, primero, cola.VerPrimero(),
 			fmt.Sprintf("Tope esperado: %d. Tope recibido %d", primero, cola.VerPrimero()))
 
 		desencolado := cola.Desencolar()
 		require.Equal(t, primero, desencolado,
 			fmt.Sprintf("Elemento desencolado esperado: %d. Elemento recibido %d", primero, desencolado))
-		primero++
 	}
 }
 func TestDesencolada(t *testing.T) {
@@ -84,8 +85,11 @@ func TestDesencolada(t *testing.T) {
 	}
 	{
 		cola := TDACola.CrearColaEnlazada[int]()
-		cola.Encolar(12)
-		cola.Encolar(36)
+		var num1 int = 124
+		var num2 int = 200
+
+		cola.Encolar(num1)
+		cola.Encolar(num2)
 		cola.Desencolar()
 		cola.Desencolar()
 
