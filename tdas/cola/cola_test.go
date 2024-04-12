@@ -55,7 +55,6 @@ func TestVolumen(t *testing.T) {
 	cola := TDACola.CrearColaEnlazada[int]()
 	const volumen int = 10000
 
-
 	for i := 0; i <= volumen; i++ {
 		cola.Encolar(i)
 	}

@@ -8,7 +8,6 @@ type pilaDinamica[T any] struct {
 const capInicial int = 6
 const factorRedimension int = 2
 
-
 func CrearPilaDinamica[T any]() Pila[T] {
 
 	nuevaPila := new(pilaDinamica[T])

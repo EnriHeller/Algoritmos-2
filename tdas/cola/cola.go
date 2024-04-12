@@ -16,4 +16,3 @@ type Cola[T any] interface {
 	// y se devuelve ese valor. Si está vacía, entra en pánico con un mensaje "La cola esta vacia".
 	Desencolar() T
 }
-
