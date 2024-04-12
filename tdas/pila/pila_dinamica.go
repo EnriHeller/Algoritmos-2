@@ -39,7 +39,7 @@ func (pila *pilaDinamica[T]) Apilar(elem T) {
 
 	pila.datos[pila.cantidad] = elem
 	pila.cantidad++
-	
+
 	if pila.cantidad == cap(pila.datos) {
 		pila.redimensionar(cap(pila.datos) * 2)
 	}

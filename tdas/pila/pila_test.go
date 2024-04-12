@@ -26,9 +26,9 @@ func TestApilar(t *testing.T) {
 		pila.Apilar(elem2)
 		pila.Apilar(elem3)
 		require.Equal(t, elem3, pila.Desapilar())
-		require.Equal(t,elem2, pila.VerTope())
+		require.Equal(t, elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
-		require.Equal(t,elem1, pila.VerTope())
+		require.Equal(t, elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 	{
@@ -40,9 +40,9 @@ func TestApilar(t *testing.T) {
 		pila.Apilar(elem2)
 		pila.Apilar(elem3)
 		require.Equal(t, elem3, pila.Desapilar())
-		require.Equal(t,elem2, pila.VerTope())
+		require.Equal(t, elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
-		require.Equal(t,elem1, pila.VerTope())
+		require.Equal(t, elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 	{
@@ -51,9 +51,9 @@ func TestApilar(t *testing.T) {
 		elem2 := false
 		pila.Apilar(elem1)
 		pila.Apilar(elem2)
-		require.Equal(t,elem2, pila.VerTope())
+		require.Equal(t, elem2, pila.VerTope())
 		require.Equal(t, elem2, pila.Desapilar())
-		require.Equal(t,elem1, pila.VerTope())
+		require.Equal(t, elem1, pila.VerTope())
 		require.Equal(t, elem1, pila.Desapilar())
 	}
 }
