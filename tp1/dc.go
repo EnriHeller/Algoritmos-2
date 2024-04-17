@@ -1,25 +1,11 @@
 package main
 
 import (
-	"fmt"
-	"tp1/calculadora"
-	"os"
 	"bufio"
+	"fmt"
+	"os"
+	"tp1/calculadora"
 )
-
-//./ds < oper.txt > dc.txt
-
-/*func main(){
-	operacion := "2 2 + +"
-	Calculadora := calculadora.CrearCalculadoraDs()
-	resultado, err := Calculadora.Operar(operacion)
-	if(err){
-		fmt.Println("llego el error al final", err)
-	}else{
-		fmt.Println("llego resultado al final",resultado)
-	}
-}*/
-
 
 func main() {
 	entrada := bufio.NewScanner(os.Stdin)
@@ -28,9 +14,9 @@ func main() {
 		calculadoraDs := calculadora.CrearCalculadoraDs()
 		comando := entrada.Text()
 		resultado, err := calculadoraDs.Operar(comando)
-		if err{
+		if err {
 			fmt.Println("ERROR")
-		}else{
+		} else {
 			fmt.Println(resultado)
 		}
 	}
@@ -39,5 +25,3 @@ func main() {
 		fmt.Printf("Error al leer entrada: %s", errEntrada)
 	}
 }
-
-
