@@ -35,19 +35,20 @@ func (cola *colaEnlazada[T]) VerPrimero() T {
 	return cola.primero.dato
 }
 
-	func (cola *colaEnlazada[T]) Encolar(elem T) {
+func (cola *colaEnlazada[T]) Encolar(elem T) {
 
-		nuevoNodo := crearNodoCola[T]()
-		nuevoNodo.dato = elem
+	nuevoNodo := crearNodoCola[T]()
+	nuevoNodo.dato = elem
 
-		cola.ultimo = nuevoNodo
-		
-		if cola.EstaVacia() {
-			cola.primero = nuevoNodo
-		} else {
-			cola.ultimo.prox = nuevoNodo
-		}
+	if cola.EstaVacia() {
+		cola.primero = nuevoNodo
+	} else {
+		cola.ultimo.prox = nuevoNodo
 	}
+
+	cola.ultimo = nuevoNodo
+
+}
 
 func (cola *colaEnlazada[T]) Desencolar() T {
 
