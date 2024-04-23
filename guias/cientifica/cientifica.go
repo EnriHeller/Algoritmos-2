@@ -21,6 +21,7 @@ func countingSort(elementos []string, rango int, digito int) {
         sumasAcumuladas[i] = sumasAcumuladas[i-1] + frecuencias[i-1]
     }
 
+    
     for _, elem := range elementos {
         valor := int(elem[digito] - '0')
         pos := sumasAcumuladas[valor]
